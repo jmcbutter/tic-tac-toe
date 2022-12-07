@@ -1,0 +1,51 @@
+.player-icon-selection {
+  margin-bottom: 2.8rem;
+  background-color: var(--green);
+  padding: 1.7rem;
+  box-shadow: inset 0 calc(-8px) var(--green-shadow);
+  border-radius: 15px;
+
+  &__prompt {
+    color: var(--gray);
+    margin-bottom: 1.7rem;
+  }
+
+  &__switch {
+    background-color: var(--darker-green);
+    border-radius: 10px;
+    margin-bottom: 1.15rem;
+    padding: 0.6rem;
+    display: flex;
+  }
+
+  &__icon {
+    flex: 1;
+    height: 3.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: var(--gray);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--gray-transparent);
+      border-radius: 10px;
+    }
+  }
+
+  &__icon--highlighted {
+    background-color: var(--gray);
+    border-radius: 10px;
+    fill: var(--darker-green);
+
+    &:hover {
+      background-color: var(--gray);
+    }
+  }
+
+  &__hint {
+    color: var(--darker-gray);
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}
