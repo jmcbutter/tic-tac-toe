@@ -1,18 +1,22 @@
 import { useState } from "react";
 import "./App.css";
-import StartGameButtons from "./components/1-molecules/StartGameButtons";
-import PlayerIconSelection from "./components/1-molecules/PlayerIconSelection";
-import { Icon } from "./components/0-atoms";
-import { Logo } from "./assets/index.js";
+import GameScreen from "./components/4-pages/GameScreen";
+import StartingScreen from "./components/4-pages/StartingScreen";
+import Player from "./utils/Player";
+import Game from "./utils/Game";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const player1 = Player(1, "YOU", "x", false);
+  const player2 = Player(2, "CPU", "o", true);
+
+  const game = Game();
+  game.setPlayers([player1, player2]);
+  game.startNewGame();
 
   return (
     <div className="App">
-      <Icon icon={Logo} style={{ marginBottom: "2.8rem" }} />
-      <PlayerIconSelection />
-      <StartGameButtons />
+      <GameScreen game={game} />
+      {/* {game ? <GameScreen /> : <StartingScreen setGame={setGame} />} */}
     </div>
   );
 }

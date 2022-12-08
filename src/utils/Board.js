@@ -1,51 +1,59 @@
 export default function Board() {
-  let state = {};
+  let squares = Array(9);
 
-  function getState() {
-    return state;
+  let winningComboIndices = [
+    // Rows
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    // Columns
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    // Diagonals
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  function getWinningSquares() {
+    const winningSquares = [];
+
+    winningComboIndices.forEach((indexCombo) => {
+      const [sq1, sq2, sq3] = indexCombo;
+      if (
+        squares[sq1] &&
+        squares[sq1] == squares[sq2] &&
+        squares[sq2] == squares[sq3]
+      ) {
+        winningSquares.push(...indexCombo);
+      }
+    });
+
+    return [...new Set(winningSquares)].sort();
+  }
+
+  function getSquares() {
+    return squares;
   }
 
   function reset() {
-    state = {};
+    squares = Array(9);
   }
 
   function isFull() {
-    return Object.keys(state).length === 9;
+    return squares.filter((sq) => sq != undefined).length == 9;
   }
 
   function makeSelection({ position, player }) {
-    if (state[position])
+    if (squares[position])
       throw new Error("That Square Has Already Been Chosen!");
-
-    state[position] = player.getId();
-  }
-
-  function getWinningSquares() {
-    let squares = [];
-
-    // Rows
-    if (squaresAreTheSame(["00", "01", "02"])) squares.push("00", "01", "02");
-    if (squaresAreTheSame(["10", "11", "12"])) squares.push("10", "11", "12");
-    if (squaresAreTheSame(["20", "21", "22"])) squares.push("20", "21", "22");
-
-    // Columns
-    if (squaresAreTheSame(["00", "10", "20"])) squares.push("00", "10", "20");
-    if (squaresAreTheSame(["01", "11", "21"])) squares.push("01", "11", "21");
-    if (squaresAreTheSame(["02", "12", "22"])) squares.push("02", "12", "22");
-
-    // Diagonal
-    if (squaresAreTheSame(["00", "11", "22"])) squares.push("00", "11", "22");
-    if (squaresAreTheSame(["02", "11", "20"])) squares.push("02", "11", "20");
-
-    return [...new Set(squares)].sort();
-  }
-
-  function squaresAreTheSame([s0, s1, s2]) {
-    return (state[s0] == state[s1]) == state[s2] && state[s0];
+    else squares[position] = player;
   }
 
   return {
-    getState,
+    getSquares,
     isFull,
     makeSelection,
     getWinningSquares,

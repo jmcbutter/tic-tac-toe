@@ -1,21 +1,35 @@
-export default function Game(players) {
-  let state = {
-    players,
-  };
+export default function Game() {
+  let players;
+  let currentPlayer;
+  let round;
 
-  // THE STARTING PLAYER FOR THE ROUND IS X ON ODD ROUNDS, O ON EVEN
+  function getPlayers() {
+    return players;
+  }
+
+  function getCurrentPlayer() {
+    return currentPlayer;
+  }
+
+  function getRound() {
+    return round;
+  }
 
   function startNewGame() {
-    state.currentPlayer = getPlayerByIcon("x");
-    state.round = 1;
+    currentPlayer = getPlayerByIcon("x");
+    round = 1;
+  }
+
+  function setPlayers(gamePlayers) {
+    players = gamePlayers;
   }
 
   function getPlayerByIcon(icon) {
-    return state.players.filter((player) => player.getIcon() == icon)[0];
+    return players.filter((player) => player.getIcon() == icon)[0];
   }
 
   function startNewRound() {
-    const nextRoundStartingIcon = determineStartingIcon(state.round + 1);
+    const nextRoundStartingIcon = determineStartingIcon(round + 1);
     const nextRoundStartingPlayer = getPlayerByIcon(nextRoundStartingIcon);
 
     setCurrentPlayer(nextRoundStartingPlayer);
@@ -27,7 +41,7 @@ export default function Game(players) {
   }
 
   function setCurrentPlayer(player) {
-    state.currentPlayer = player;
+    currentPlayer = player;
   }
 
   function determineStartingIcon(round) {
@@ -35,18 +49,21 @@ export default function Game(players) {
   }
 
   function moveToNextTurn() {
-    const { players, currentPlayer } = state;
     const nextPlayer = players.filter((player) => player != currentPlayer)[0];
 
     setCurrentPlayer(nextPlayer);
   }
 
   function moveToNextRound() {
-    state.round++;
+    round++;
   }
 
   return {
     getState,
+    getCurrentPlayer,
+    getPlayers,
+    getRound,
+    setPlayers,
     startNewGame,
     startNewRound,
     moveToNextTurn,

@@ -18,7 +18,9 @@
     display: flex;
   }
 
-  &__icon {
+  &__button {
+    background-color: inherit;
+    border: none;
     flex: 1;
     height: 3.8rem;
     display: flex;
@@ -26,6 +28,7 @@
     justify-content: center;
     fill: var(--gray);
     cursor: pointer;
+    padding: 0.8rem;
 
     &:hover {
       background-color: var(--gray-transparent);
@@ -33,7 +36,7 @@
     }
   }
 
-  &__icon--highlighted {
+  &__button--selected {
     background-color: var(--gray);
     border-radius: 10px;
     fill: var(--darker-green);
@@ -41,6 +44,10 @@
     &:hover {
       background-color: var(--gray);
     }
+  }
+
+  &__icon {
+    pointer-events: none;
   }
 
   &__hint {

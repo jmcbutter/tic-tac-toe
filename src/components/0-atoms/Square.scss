@@ -1,0 +1,67 @@
+.square {
+  --x-color: var(--cyan);
+  --o-color: var(--orange);
+  --box-shadow: var(--green-shadow);
+
+  background-color: var(--green);
+  box-shadow: inset 0 -8px var(--box-shadow);
+  border-radius: 15px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  cursor: pointer;
+
+  &--winner {
+    & > svg {
+      fill: var(--green);
+    }
+
+    &.square--x {
+      --box-shadow: var(--cyan-shadow);
+      background-color: var(--x-color);
+    }
+
+    &.square--o {
+      --box-shadow: var(--orange-shadow);
+      background-color: var(--o-color);
+    }
+  }
+
+  &__hover-icon {
+    fill: none;
+    stroke: var(--icon-stroke);
+
+    &--x {
+      --icon-stroke: var(--x-color);
+    }
+
+    &--o {
+      --icon-stroke: var(--o-color);
+    }
+  }
+
+  &__icon {
+    fill: var(--icon-fill);
+    &--x {
+      --icon-fill: var(--x-color);
+    }
+
+    &--o {
+      --icon-fill: var(--o-color);
+    }
+  }
+
+  &--x-wins {
+    background-color: var(--x-color);
+  }
+
+  &--o-wins {
+    background-color: var(--o-color);
+  }
+
+  & > * {
+    transform: translateY(-4px);
+  }
+}

@@ -46,47 +46,35 @@ const player2 = {
 const players = [player1, player2];
 
 test("game changes to player 2's turn from player 1", () => {
-  const game = Game(players);
+  const game = Game();
+  game.setPlayers(players);
   game.startNewGame();
   game.moveToNextTurn();
-  expect(game.getState()).toStrictEqual({
-    round: 1,
-    currentPlayer: player2,
-    players: players,
-  });
+  expect(game.getCurrentPlayer()).toStrictEqual(player2);
 });
 
 test("game changes to player 1's turn from player 2", () => {
-  const game = Game(players);
+  const game = Game();
+  game.setPlayers(players);
   game.startNewGame();
   game.moveToNextTurn();
   game.moveToNextTurn();
-  expect(game.getState()).toStrictEqual({
-    round: 1,
-    currentPlayer: player1,
-    players: players,
-  });
+  expect(game.getCurrentPlayer()).toStrictEqual(player1);
 });
 
 test("start a new round", () => {
-  const game = Game(players);
+  const game = Game();
+  game.setPlayers(players);
   game.startNewGame();
   game.startNewRound();
-  expect(game.getState()).toStrictEqual({
-    round: 2,
-    currentPlayer: player2,
-    players: players,
-  });
+  expect(game.getRound()).toBe(2);
 });
 
 test("game resets", () => {
-  const game = Game(players);
+  const game = Game();
+  game.setPlayers(players);
   game.startNewGame();
   game.startNewRound();
   game.startNewGame();
-  expect(game.getState()).toStrictEqual({
-    round: 1,
-    currentPlayer: player1,
-    players: players,
-  });
+  expect(game.getRound()).toBe(1);
 });
