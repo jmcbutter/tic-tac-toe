@@ -31,7 +31,7 @@ function Button(props) {
         return "btn--cyan";
       case "orange":
         return "btn--orange";
-      default:
+      case "gray":
         return "btn--gray";
     }
   }

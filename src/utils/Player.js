@@ -21,6 +21,16 @@ export default function Player(id, name, icon, isCPU) {
     return wins;
   }
 
+  function cpuChooseSquare(board) {
+    const emptyIndices = [];
+    console.log(board.getSquares());
+    Array.apply(null, board.getSquares()).forEach((sq, ind) => {
+      if (!sq) emptyIndices.push(ind + 1);
+    });
+    console.log(emptyIndices);
+    return emptyIndices[0];
+  }
+
   return {
     isCPU,
     getId,
@@ -28,5 +38,6 @@ export default function Player(id, name, icon, isCPU) {
     getIcon,
     addWin,
     getWins,
+    cpuChooseSquare,
   };
 }

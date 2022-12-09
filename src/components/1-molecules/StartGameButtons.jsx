@@ -9,10 +9,11 @@ function StartGameButtons({ icon, setGame }) {
     const player1 = Player(1, "YOU", icon, false);
     const player2 = Player(2, "CPU", player2Icon, true);
 
-    let newGame = Game();
-    newGame.setPlayers(player1, player2);
+    let game = Game();
+    game.setPlayers([player1, player2]);
+    game.startNewGame();
 
-    setGame(newGame);
+    setGame(game);
   }
 
   function onNewGameVsPlayerClick() {
@@ -20,10 +21,11 @@ function StartGameButtons({ icon, setGame }) {
     const player1 = Player(1, "P1", icon, false);
     const player2 = Player(2, "P2", player2Icon, false);
 
-    let newGame = Game();
-    newGame.setPlayers(player1, player2);
+    let game = Game();
+    game.setPlayers([player1, player2]);
+    game.startNewGame();
 
-    setGame(newGame);
+    setGame(game);
   }
 
   return (

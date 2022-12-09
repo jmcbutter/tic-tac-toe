@@ -36,10 +36,6 @@ export default function Game() {
     moveToNextRound();
   }
 
-  function getState() {
-    return state;
-  }
-
   function setCurrentPlayer(player) {
     currentPlayer = player;
   }
@@ -59,7 +55,6 @@ export default function Game() {
   }
 
   return {
-    getState,
     getCurrentPlayer,
     getPlayers,
     getRound,
