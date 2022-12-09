@@ -8,7 +8,13 @@
 }
 
 .square {
-  aspect-ratio: 1 / 1;
+  // aspect-ratio: 1 / 1;
+
+  &::before {
+    content: "";
+    height: 0;
+    padding-top: 100%;
+  }
 
   display: flex;
   justify-content: center;
@@ -164,7 +170,15 @@
     & > button {
       height: 100%;
       padding: 0;
-      aspect-ratio: 1/1;
+      width: 3.25rem;
+      height: 3.25rem;
+      // aspect-ratio: 1/1;
+
+      &::before {
+        content: "";
+        height: 0;
+        padding-top: 100%;
+      }
     }
   }
 }
